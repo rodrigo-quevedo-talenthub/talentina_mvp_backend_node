@@ -6,8 +6,12 @@ import { logTime } from "./middlewares/logTime";
 
 const app = express();
 
-app.use(cors);
 app.use(logTime);
+app.use(cors);
+
+
+app.use(express.json());
+
 
 app.use(router);
 
