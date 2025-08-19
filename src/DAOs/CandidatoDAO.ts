@@ -1,7 +1,7 @@
-import { PostCandidato } from "../types/contract/candidatos";
+import { CandidatoEntityDTO } from "../DTOs/candidatos/internal/CandidatoEntityDTO";
 import { Candidato } from "../types/entities/Candidato";
 
-
+import prisma from "../config/prisma";
 
 
 const PostulanteDAO = {
@@ -9,20 +9,20 @@ const PostulanteDAO = {
     async  getCandidatos(): Promise<Candidato[]> {
 
         try{
-            // TO DO
-            throw new Error("No implementado");
+            return await prisma.candidato.findMany();
         }
         catch(e){
+            //DB errors de conexion/network
             throw e;
         }
     },
 
-    async crearCandidato(candidato: PostCandidato): Promise<Candidato>{
-         try{
-            // TO DO
-            throw new Error("No implementado");
+    async crearCandidato(candidatoEntityDTO: CandidatoEntityDTO): Promise<Candidato>{
+        try{
+            return await prisma.candidato.create({data: candidatoEntityDTO});
         }
         catch(e){
+            //DB errors de conexion/network
             throw e;
         }
     }

@@ -1,12 +1,21 @@
 import CandidatoDAO from "../../DAOs/CandidatoDAO";
-import { PostCandidato } from "../../types/contract/candidatos";
+import { CrearCandidatoDTO } from "../../DTOs/candidatos/inbound/CrearCandidatoDTO";
+import { CandidatoEntityDTO } from "../../DTOs/candidatos/internal/CandidatoEntityDTO";
 import {Candidato} from "../../types/entities/Candidato";
 
 
 
-export default async function postCandidatoService(candidato: PostCandidato): Promise<Candidato>{
+export default async function postCandidatoService(crearCandidatoDTO: CrearCandidatoDTO): Promise<Candidato>{
 
-    let nuevoCandidato = await CandidatoDAO.crearCandidato(candidato);
+    let candidatoEntityDTO: CandidatoEntityDTO = crearCandidatoDTO as CandidatoEntityDTO;
+    
+    //setearlo como 'enviado'por default:
+    //prefiero que se haga en el service (en lugar de en el prisma schema con un @default), porque se trata de logica de negocio
+    candidatoEntityDTO.estado = "enviado";
+
+    //TODO: manejo de errores de creacion (types, valores invalidos, etc)
+    let nuevoCandidato = await CandidatoDAO.crearCandidato(candidatoEntityDTO);
+    
 
     return nuevoCandidato;
 }

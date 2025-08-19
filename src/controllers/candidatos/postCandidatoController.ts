@@ -1,23 +1,25 @@
 import { Request, Response } from "express";
 import postCandidatoService from "../../services/candidatos/postCandidatoService";
+import { CrearCandidatoDTO } from "../../DTOs/candidatos/inbound/CrearCandidatoDTO";
+import { CandidatoResponseDTO } from "../../DTOs/candidatos/outbound/CandidatoResponseDTO";
 
 
 
 
 export async function postCandidatoController(req: Request, res: Response){
 
-    //TODO: verificacion y mapeo
-    // let postCandidato: PostCandidato = {
-    //     nombre: req.body.nombre,
+    let crearCandidatoDTO: CrearCandidatoDTO = req.body as CrearCandidatoDTO;
+    
+    //TODO: verificacion de types, formato, rango de valores, etc.
+    // verificarInputsCrearCandidatoService()
 
-    // }
-
-    console.log(req.body);
-
-    // let nuevoCandidato = await postCandidatoService(req.body);
+    let nuevoCandidato = await postCandidatoService(crearCandidatoDTO);
 
     //TODO: filtrar info que se mande al front
+    //let candidatoResponseDTO: CandidatoResponseDTO = filtrarInfoCandidatoService(candidatoResponseDTO);
 
-    // res.json(nuevoCandidato);
-    res.send("ok")
+
+    let candidatoResponseDTO: CandidatoResponseDTO = nuevoCandidato as CandidatoResponseDTO;
+
+    res.json(candidatoResponseDTO);
 }

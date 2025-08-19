@@ -1,5 +1,5 @@
 
-export interface PostCandidato {
+export interface CrearCandidatoDTO {
     nombre: string,
     email: string,
     telefono: string,

@@ -1,16 +1,23 @@
 datasource db {
-  url      = env("CONNECTION_URL_PRISMA")
-  provider = "postgresql"
+    url      = env("CONNECTION_URL_PRISMA")
+    provider = "postgresql"
 }
 
 generator client {
-  provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+    provider = "prisma-client-js"
 }
 
-model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  email     String   @unique
-  name      String?
+model Candidato {
+    id        Int      @id @default(autoincrement())
+    nombre    String   
+    email     String   @unique
+    telefono  String   //podria ser @unique
+    skills    String[] //!
+    experiencia   Int
+    educacion     String
+    estado        String
+    urLinkedin    String //podria ser @unique
+    experiencia1  String 
+    experiencia2  String 
 }
+
