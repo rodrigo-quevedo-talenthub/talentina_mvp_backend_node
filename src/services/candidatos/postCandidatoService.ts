@@ -11,7 +11,7 @@ export default async function postCandidatoService(crearCandidatoDTO: CrearCandi
     
     //setearlo como 'enviado'por default:
     //prefiero que se haga en el service (en lugar de en el prisma schema con un @default), porque se trata de logica de negocio
-    candidatoEntityDTO.estado = "enviado";
+    candidatoEntityDTO.estado = "PENDIENTE";
 
     //TODO: manejo de errores de creacion (types, valores invalidos, etc)
     let nuevoCandidato = await CandidatoDAO.crearCandidato(candidatoEntityDTO);

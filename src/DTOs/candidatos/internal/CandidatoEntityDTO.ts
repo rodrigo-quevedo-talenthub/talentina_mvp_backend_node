@@ -1,13 +1,14 @@
+import { EstadoCandidato } from "@prisma/client";
 
 export interface CandidatoEntityDTO {
     nombre: string,
     email: string,
-    telefono: string,
+    telefono: string | null,
     skills: string[],
     experiencia: number,
-    educacion: string,
-    estado: string, //esto se agrega en el service
-    urLinkedin: string,
-    experiencia1: string,
-    experiencia2: string
+    educacion: string | null,
+    experiencia1: string | null,
+    experiencia2: string | null,
+    urlLinkedin: string | null,
+    estado: EstadoCandidato
 }

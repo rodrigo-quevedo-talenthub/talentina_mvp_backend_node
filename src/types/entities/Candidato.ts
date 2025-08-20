@@ -1,15 +1,19 @@
 //TO DO 
 
+import { EstadoCandidato } from "@prisma/client";
+
 export interface Candidato {
     id: number,
     nombre: string,
     email: string,
-    telefono: string,
+    telefono: string | null,
     skills: string[],
     experiencia: number,
-    educacion: string,
-    estado: string, 
-    urLinkedin: string,
-    experiencia1: string,
-    experiencia2: string
+    educacion: string | null,
+    experiencia1: string | null,
+    experiencia2: string | null,
+    createdAt: Date,
+    updatedAt: Date,
+    urlLinkedin: string | null,
+    estado: EstadoCandidato
 }
